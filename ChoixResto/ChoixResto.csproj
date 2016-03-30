@@ -136,6 +136,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\BddContext.cs" />
+    <Compile Include="Models\Dal.cs" />
+    <Compile Include="Models\Interfaces\IDal.cs" />
     <Compile Include="Models\Restaurant.cs" />
     <Compile Include="Models\Sondage.cs" />
     <Compile Include="Models\Utilisateur.cs" />

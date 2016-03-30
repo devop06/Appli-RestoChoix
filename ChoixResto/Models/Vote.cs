@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChoixResto.Models
 {
-    class Vote
+    public class Vote
     {
         public int Id { get; set; }
         public virtual Restaurant Resto { get; set; }

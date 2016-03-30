@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace ChoixResto.Models
 {
-    public class Sondage
+    public interface IDal : IDisposable
     {
-         public int Id { get; set; }
-         public DateTime Date { get; set; }
-         public virtual List<Vote> Votes { get; set; }
+        List<Restaurant> ObtenirListeResto();
+        void CreerResto(int id, String nom, String tel);
     }
 }

@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChoixResto", "ChoixResto\ChoixResto.csproj", "{B17203B7-5370-45FC-AFF0-770DF140E561}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChoixRestoTests", "ChoixRestoTests\ChoixRestoTests.csproj", "{EE00D26C-F6D2-4782-A569-30B820CFE107}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChoixRestoTest", "ChoixRestoTests\ChoixRestoTest.csproj", "{EE00D26C-F6D2-4782-A569-30B820CFE107}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

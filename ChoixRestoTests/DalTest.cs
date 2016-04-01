@@ -1,8 +1,7 @@
-﻿using System;
+﻿using ChoixResto.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ChoixResto.Models;
 
-namespace ChoixRestoTests
+namespace ChoixRestoTest
 {
     [TestClass]
     public class DalTest

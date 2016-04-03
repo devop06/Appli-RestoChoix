@@ -27,7 +27,7 @@ namespace ChoixResto.Models
 
         public void CreerResto(int id, string nom, string tel)
         {
-            this.bdd.restaurants.Add(new Restaurant { Id = 1, Nom = "Yuelu", Telephone = "0698589855" });
+            this.bdd.restaurants.Add(new Restaurant { Id = id, Nom = nom, Telephone = tel });
             this.bdd.SaveChanges();
         }
     }

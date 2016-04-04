@@ -25,10 +25,23 @@ namespace ChoixResto.Models
             this.bdd.Dispose();
         }
 
-        public void CreerResto(int id, string nom, string tel)
+        public void ModifierLesRestos(int id, string nom, string tel)
         {
-            this.bdd.restaurants.Add(new Restaurant { Id = id, Nom = nom, Telephone = tel });
+            Restaurant r = this.bdd.restaurants.FirstOrDefault(resto => resto.Id == id);
+            if(r != null)
+            {
+                r.Nom = nom;
+                r.Telephone = tel;
+                this.bdd.SaveChanges();
+            }
+        }
+
+        public void CreerResto(string nom, string tel)
+        {
+            this.bdd.restaurants.Add(new Restaurant { Nom = nom, Telephone = tel });
             this.bdd.SaveChanges();
         }
+
+     
     }
 }

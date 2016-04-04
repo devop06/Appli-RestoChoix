@@ -9,6 +9,7 @@ namespace ChoixResto.Models
     public interface IDal : IDisposable
     {
         List<Restaurant> ObtenirListeResto();
-        void CreerResto(int id, String nom, String tel);
+        void CreerResto(String nom, String tel);
+        void ModifierLesRestos(int id, string nom, string tel);
     }
 }

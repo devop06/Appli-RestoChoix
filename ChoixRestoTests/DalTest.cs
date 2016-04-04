@@ -30,7 +30,6 @@ namespace ChoixRestoTest
         {
             dal.CreerResto("La bonne fourchette", "0102030405");
             List<Restaurant> restos = dal.ObtenirListeResto();
-
             Assert.IsNotNull(restos);
             Assert.AreEqual(1, restos.Count);
             Assert.AreEqual("La bonne fourchette", restos[0].Nom);
@@ -42,7 +41,6 @@ namespace ChoixRestoTest
         {
             dal.CreerResto("La bonne fourchette", "0102030405");
             dal.ModifierLesRestos(1, "La bonne cuillère", null);
-
             List<Restaurant> restos = dal.ObtenirListeResto();
             Assert.IsNotNull(restos);
             Assert.AreEqual(1, restos.Count);
@@ -54,9 +52,7 @@ namespace ChoixRestoTest
         public void RestaurantExiste_AvecCreationDunRestauraunt_RenvoiQuilExiste()
         {
             dal.CreerResto("La bonne fourchette", "0102030405");
-
             bool existe = dal.RestaurantExiste("La bonne fourchette");
-
             Assert.IsTrue(existe);
         }
 
@@ -64,7 +60,6 @@ namespace ChoixRestoTest
         public void RestaurantExiste_AvecRestaurauntInexistant_RenvoiQuilExiste()
         {
             bool existe = dal.RestaurantExiste("La bonne fourchette");
-
             Assert.IsFalse(existe);
         }
 

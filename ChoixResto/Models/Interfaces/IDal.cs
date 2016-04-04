@@ -11,6 +11,5 @@ namespace ChoixResto.Models
         List<Restaurant> ObtenirListeResto();
         void CreerResto(String nom, String tel);
         void ModifierLesRestos(int id, string nom, string tel);
-      
     }
 }

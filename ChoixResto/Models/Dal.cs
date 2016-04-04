@@ -42,6 +42,10 @@ namespace ChoixResto.Models
             this.bdd.SaveChanges();
         }
 
-     
+        public bool RestaurantExiste(string v)
+        {
+            bool existe = this.ObtenirListeResto().Exists(r => r.Nom == v);
+            return existe;
+        }
     }
 }

@@ -6,5 +6,6 @@ namespace ChoixResto.Models
     {
         public DbSet<Sondage> sondages { get; set; }
         public DbSet<Restaurant> restaurants { get; set; }
+        public DbSet<Utilisateur> utilisateurs { get; set; }
     }
 }

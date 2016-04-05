@@ -9,20 +9,17 @@ namespace ChoixResto.Models
     public class Dal : IDal
     {
         private BddContext bdd;
+        private Fonctions.Password password; 
 
         public Dal()
         {
             this.bdd = new BddContext();
+            this.password = new Fonctions.Password();
         }
 
         public List<Restaurant> ObtenirListeResto()
         {
             return this.bdd.restaurants.ToList();
-        }
-
-        public void Dispose()
-        {
-            this.bdd.Dispose();
         }
 
         public void ModifierLesRestos(int id, string nom, string tel)
@@ -46,6 +43,33 @@ namespace ChoixResto.Models
         {
             bool existe = this.ObtenirListeResto().Exists(r => r.Nom == v);
             return existe;
+        }
+
+        public Utilisateur ObtenirUtilisateur(int v)
+        {
+             return this.bdd.utilisateurs.FirstOrDefault(util => util.Id == v);
+        }
+
+        public Utilisateur ObtenirUtilisateur(string name)
+        {
+            return this.bdd.utilisateurs.FirstOrDefault(util => util.Prenom == name);
+        }
+
+        public void Dispose()
+        {
+            this.bdd.Dispose();
+        }
+
+        public void AjouterUtilisateur(string v1, string v2)
+        {
+            this.bdd.utilisateurs.Add(new Utilisateur { Prenom = v1, MotDePasse = this.password.EncodeMD5(v2) });
+            this.bdd.SaveChanges();
+        }
+
+        public Utilisateur Authentifier(string v1, string v2)
+        {
+            string 
+            return 
         }
     }
 }

@@ -62,14 +62,20 @@ namespace ChoixResto.Models
 
         public void AjouterUtilisateur(string v1, string v2)
         {
-            this.bdd.utilisateurs.Add(new Utilisateur { Prenom = v1, MotDePasse = this.password.EncodeMD5(v2) });
+            this.bdd.utilisateurs.Add(new Utilisateur { Prenom = v1, MotDePasse = Fonctions.Password.EncodeMD5(v2) });
             this.bdd.SaveChanges();
         }
 
         public Utilisateur Authentifier(string v1, string v2)
         {
-            string 
-            return 
+            v2 = Fonctions.Password.EncodeMD5(v2);
+            Utilisateur foundUser = this.bdd.utilisateurs.FirstOrDefault(user => user.Prenom == v1 && user.MotDePasse == v2);
+            return foundUser;
+        }
+
+        public bool ADejaVote(int v1, string v2)
+        {
+            throw new NotImplementedException();
         }
     }
 }

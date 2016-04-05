@@ -16,5 +16,6 @@ namespace ChoixResto.Models
         Utilisateur ObtenirUtilisateur(String name);
         void AjouterUtilisateur(string v1, string v2);
         Utilisateur Authentifier(string v1, string v2);
+        bool ADejaVote(int v1, string v2);
     }
 }

@@ -4,8 +4,8 @@ namespace ChoixResto.Models
 {
     public class BddContext : DbContext
     {
-        public DbSet<Sondage> sondages { get; set; }
-        public DbSet<Restaurant> restaurants { get; set; }
-        public DbSet<Utilisateur> utilisateurs { get; set; }
+        public DbSet<Sondage> Sondages { get; set; }
+        public DbSet<Restaurant> Restaurants { get; set; }
+        public DbSet<Utilisateur> Utilisateurs { get; set; }
     }
 }

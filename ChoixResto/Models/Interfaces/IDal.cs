@@ -14,8 +14,11 @@ namespace ChoixResto.Models
         bool RestaurantExiste(string v);
         Utilisateur ObtenirUtilisateur(int v);
         Utilisateur ObtenirUtilisateur(String name);
-        void AjouterUtilisateur(string v1, string v2);
+        int AjouterUtilisateur(string v1, string v2);
         Utilisateur Authentifier(string v1, string v2);
         bool ADejaVote(int v1, string v2);
+        int CreerUnSondage();
+        void AjouterVote(int idSondage, int idResto, int idUtilisateur);
+        List<Resultats> ObtenirLesResultats(int idSondage);
     }
 }

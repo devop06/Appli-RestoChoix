@@ -126,113 +126,109 @@ namespace ChoixRestoTest
        public void ADejaVote_AvecIdNonNumerique_RetourneFalse()
        {
            bool pasVote = dal.ADejaVote(1, "abc");
-            Assert.IsFalse(pasVote);
+           Assert.IsFalse(pasVote);
        }
-        /*
-            [TestMethod]
-            public void ADejaVote_UtilisateurNAPasVote_RetourneFalse()
-            {
-                int idSondage = dal.CreerUnSondage();
-                int idUtilisateur = dal.AjouterUtilisateur("Nouvel utilisateur", "12345");
+       
+       [TestMethod]
+        public void ADejaVote_UtilisateurNAPasVote_RetourneFalse()
+        {
+           int idSondage = dal.CreerUnSondage();
+           int idUtilisateur = dal.AjouterUtilisateur("Nouvel utilisateur", "12345");
+           bool pasVote = dal.ADejaVote(idSondage, idUtilisateur.ToString());
+           Assert.IsFalse(pasVote);
+        }
+       
+           [TestMethod]
+           public void ADejaVote_UtilisateurAVote_RetourneTrue()
+           {
+               int idSondage = dal.CreerUnSondage();
+               int idUtilisateur = dal.AjouterUtilisateur("Nouvel utilisateur", "12345");
+               dal.CreerResto("La bonne fourchette", "0102030405");
+               dal.AjouterVote(idSondage, 1, idUtilisateur);
+               bool aVote = dal.ADejaVote(idSondage, idUtilisateur.ToString());
+               Assert.IsTrue(aVote);
+           }
+        
+           [TestMethod]
+           public void ObtenirLesResultats_AvecQuelquesChoix_RetourneBienLesResultats()
+           {
+               int idSondage = dal.CreerUnSondage();
+               int idUtilisateur1 = dal.AjouterUtilisateur("Utilisateur1", "12345");
+               int idUtilisateur2 = dal.AjouterUtilisateur("Utilisateur2", "12345");
+               int idUtilisateur3 = dal.AjouterUtilisateur("Utilisateur3", "12345");
 
-                bool pasVote = dal.ADejaVote(idSondage, idUtilisateur.ToString());
+               dal.CreerResto("Resto pinière", "0102030405");
+               dal.CreerResto("Resto pinambour", "0102030405");
+               dal.CreerResto("Resto mate", "0102030405");
+               dal.CreerResto("Resto ride", "0102030405");
 
-                Assert.IsFalse(pasVote);
-            }
+               dal.AjouterVote(idSondage, 1, idUtilisateur1);
+               dal.AjouterVote(idSondage, 3, idUtilisateur1);
+               dal.AjouterVote(idSondage, 4, idUtilisateur1);
+               dal.AjouterVote(idSondage, 1, idUtilisateur2);
+               dal.AjouterVote(idSondage, 1, idUtilisateur3);
+               dal.AjouterVote(idSondage, 3, idUtilisateur3);
 
-            [TestMethod]
-            public void ADejaVote_UtilisateurAVote_RetourneTrue()
-            {
-                int idSondage = dal.CreerUnSondage();
-                int idUtilisateur = dal.AjouterUtilisateur("Nouvel utilisateur", "12345");
-                dal.CreerRestaurant("La bonne fourchette", "0102030405");
-                dal.AjouterVote(idSondage, 1, idUtilisateur);
+               List<Resultats> resultats = dal.ObtenirLesResultats(idSondage);
 
-                bool aVote = dal.ADejaVote(idSondage, idUtilisateur.ToString());
+               Assert.AreEqual(3, resultats[0].NombresDeVotes);
+               Assert.AreEqual("Resto pinière", resultats[0].Nom);
+               Assert.AreEqual("0102030405", resultats[0].Telephone);
+               Assert.AreEqual(2, resultats[1].NombresDeVotes);
+               Assert.AreEqual("Resto mate", resultats[1].Nom);
+               Assert.AreEqual("0102030405", resultats[1].Telephone);
+               Assert.AreEqual(1, resultats[2].NombresDeVotes);
+               Assert.AreEqual("Resto ride", resultats[2].Nom);
+               Assert.AreEqual("0102030405", resultats[2].Telephone);
+           }
+        
+           [TestMethod]
+           public void ObtenirLesResultats_AvecDeuxSondages_RetourneBienLesBonsResultats()
+           {
+               int idSondage1 = dal.CreerUnSondage();
+               int idUtilisateur1 = dal.AjouterUtilisateur("Utilisateur1", "12345");
+               int idUtilisateur2 = dal.AjouterUtilisateur("Utilisateur2", "12345");
+               int idUtilisateur3 = dal.AjouterUtilisateur("Utilisateur3", "12345");
+               dal.CreerResto("Resto pinière", "0102030405");
+               dal.CreerResto("Resto pinambour", "0102030405");
+               dal.CreerResto("Resto mate", "0102030405");
+               dal.CreerResto("Resto ride", "0102030405");
+               dal.AjouterVote(idSondage1, 1, idUtilisateur1);
+               dal.AjouterVote(idSondage1, 3, idUtilisateur1);
+               dal.AjouterVote(idSondage1, 4, idUtilisateur1);
+               dal.AjouterVote(idSondage1, 1, idUtilisateur2);
+               dal.AjouterVote(idSondage1, 1, idUtilisateur3);
+               dal.AjouterVote(idSondage1, 3, idUtilisateur3);
 
-                Assert.IsTrue(aVote);
-            }
+               int idSondage2 = dal.CreerUnSondage();
+               dal.AjouterVote(idSondage2, 2, idUtilisateur1);
+               dal.AjouterVote(idSondage2, 3, idUtilisateur1);
+               dal.AjouterVote(idSondage2, 1, idUtilisateur2);
+               dal.AjouterVote(idSondage2, 4, idUtilisateur3);
+               dal.AjouterVote(idSondage2, 3, idUtilisateur3);
 
-            [TestMethod]
-            public void ObtenirLesResultats_AvecQuelquesChoix_RetourneBienLesResultats()
-            {
-                int idSondage = dal.CreerUnSondage();
-                int idUtilisateur1 = dal.AjouterUtilisateur("Utilisateur1", "12345");
-                int idUtilisateur2 = dal.AjouterUtilisateur("Utilisateur2", "12345");
-                int idUtilisateur3 = dal.AjouterUtilisateur("Utilisateur3", "12345");
+               List<Resultats> resultats1 = dal.ObtenirLesResultats(idSondage1);
+               List<Resultats> resultats2 = dal.ObtenirLesResultats(idSondage2);
 
-                dal.CreerRestaurant("Resto pinière", "0102030405");
-                dal.CreerRestaurant("Resto pinambour", "0102030405");
-                dal.CreerRestaurant("Resto mate", "0102030405");
-                dal.CreerRestaurant("Resto ride", "0102030405");
+               Assert.AreEqual(3, resultats1[0].NombresDeVotes);
+               Assert.AreEqual("Resto pinière", resultats1[0].Nom);
+               Assert.AreEqual("0102030405", resultats1[0].Telephone);
+               Assert.AreEqual(2, resultats1[1].NombresDeVotes);
+               Assert.AreEqual("Resto mate", resultats1[1].Nom);
+               Assert.AreEqual("0102030405", resultats1[1].Telephone);
+               Assert.AreEqual(1, resultats1[2].NombresDeVotes);
+               Assert.AreEqual("Resto ride", resultats1[2].Nom);
+               Assert.AreEqual("0102030405", resultats1[2].Telephone);
 
-                dal.AjouterVote(idSondage, 1, idUtilisateur1);
-                dal.AjouterVote(idSondage, 3, idUtilisateur1);
-                dal.AjouterVote(idSondage, 4, idUtilisateur1);
-                dal.AjouterVote(idSondage, 1, idUtilisateur2);
-                dal.AjouterVote(idSondage, 1, idUtilisateur3);
-                dal.AjouterVote(idSondage, 3, idUtilisateur3);
-
-                List<Resultats> resultats = dal.ObtenirLesResultats(idSondage);
-
-                Assert.AreEqual(3, resultats[0].NombreDeVotes);
-                Assert.AreEqual("Resto pinière", resultats[0].Nom);
-                Assert.AreEqual("0102030405", resultats[0].Telephone);
-                Assert.AreEqual(2, resultats[1].NombreDeVotes);
-                Assert.AreEqual("Resto mate", resultats[1].Nom);
-                Assert.AreEqual("0102030405", resultats[1].Telephone);
-                Assert.AreEqual(1, resultats[2].NombreDeVotes);
-                Assert.AreEqual("Resto ride", resultats[2].Nom);
-                Assert.AreEqual("0102030405", resultats[2].Telephone);
-            }
-
-            [TestMethod]
-            public void ObtenirLesResultats_AvecDeuxSondages_RetourneBienLesBonsResultats()
-            {
-                int idSondage1 = dal.CreerUnSondage();
-                int idUtilisateur1 = dal.AjouterUtilisateur("Utilisateur1", "12345");
-                int idUtilisateur2 = dal.AjouterUtilisateur("Utilisateur2", "12345");
-                int idUtilisateur3 = dal.AjouterUtilisateur("Utilisateur3", "12345");
-                dal.CreerRestaurant("Resto pinière", "0102030405");
-                dal.CreerRestaurant("Resto pinambour", "0102030405");
-                dal.CreerRestaurant("Resto mate", "0102030405");
-                dal.CreerRestaurant("Resto ride", "0102030405");
-                dal.AjouterVote(idSondage1, 1, idUtilisateur1);
-                dal.AjouterVote(idSondage1, 3, idUtilisateur1);
-                dal.AjouterVote(idSondage1, 4, idUtilisateur1);
-                dal.AjouterVote(idSondage1, 1, idUtilisateur2);
-                dal.AjouterVote(idSondage1, 1, idUtilisateur3);
-                dal.AjouterVote(idSondage1, 3, idUtilisateur3);
-
-                int idSondage2 = dal.CreerUnSondage();
-                dal.AjouterVote(idSondage2, 2, idUtilisateur1);
-                dal.AjouterVote(idSondage2, 3, idUtilisateur1);
-                dal.AjouterVote(idSondage2, 1, idUtilisateur2);
-                dal.AjouterVote(idSondage2, 4, idUtilisateur3);
-                dal.AjouterVote(idSondage2, 3, idUtilisateur3);
-
-                List<Resultats> resultats1 = dal.ObtenirLesResultats(idSondage1);
-                List<Resultats> resultats2 = dal.ObtenirLesResultats(idSondage2);
-
-                Assert.AreEqual(3, resultats1[0].NombreDeVotes);
-                Assert.AreEqual("Resto pinière", resultats1[0].Nom);
-                Assert.AreEqual("0102030405", resultats1[0].Telephone);
-                Assert.AreEqual(2, resultats1[1].NombreDeVotes);
-                Assert.AreEqual("Resto mate", resultats1[1].Nom);
-                Assert.AreEqual("0102030405", resultats1[1].Telephone);
-                Assert.AreEqual(1, resultats1[2].NombreDeVotes);
-                Assert.AreEqual("Resto ride", resultats1[2].Nom);
-                Assert.AreEqual("0102030405", resultats1[2].Telephone);
-
-                Assert.AreEqual(1, resultats2[0].NombreDeVotes);
-                Assert.AreEqual("Resto pinambour", resultats2[0].Nom);
-                Assert.AreEqual("0102030405", resultats2[0].Telephone);
-                Assert.AreEqual(2, resultats2[1].NombreDeVotes);
-                Assert.AreEqual("Resto mate", resultats2[1].Nom);
-                Assert.AreEqual("0102030405", resultats2[1].Telephone);
-                Assert.AreEqual(1, resultats2[2].NombreDeVotes);
-                Assert.AreEqual("Resto pinière", resultats2[2].Nom);
-                Assert.AreEqual("0102030405", resultats2[2].Telephone);
-            } */
+               Assert.AreEqual(1, resultats2[0].NombresDeVotes);
+               Assert.AreEqual("Resto pinambour", resultats2[0].Nom);
+               Assert.AreEqual("0102030405", resultats2[0].Telephone);
+               Assert.AreEqual(2, resultats2[1].NombresDeVotes);
+               Assert.AreEqual("Resto mate", resultats2[1].Nom);
+               Assert.AreEqual("0102030405", resultats2[1].Telephone);
+               Assert.AreEqual(1, resultats2[2].NombresDeVotes);
+               Assert.AreEqual("Resto pinière", resultats2[2].Nom);
+               Assert.AreEqual("0102030405", resultats2[2].Telephone);
+           } 
     }
 }

@@ -7,13 +7,25 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Presentation restaurant @Model.Restaurant.Nom</title>
+    <style>
+        .maClass {
+            color: brown;
+        }
+    </style>
 </head>
 <body>
     <div> 
+       
         <p>Voici la page de présenation du resto' @Model.Restaurant.Nom</p>
         <br/>
         <p>Nous avons ouvert le @Model.Date</p>
         <p>N'hésitez pas à nous contacter au @Model.Restaurant.Telephone</p>
+        @Html.Label("participer", "Voulez-vous participer ?", new { style = "color: black" } )
+        @Html.CheckBox("participer", true)
+        @Html.Label("textCouleur", "Affichage par classe marron", new { @Class = "maClass" } )
     </div>
 </body>
 </html>
+
+
+

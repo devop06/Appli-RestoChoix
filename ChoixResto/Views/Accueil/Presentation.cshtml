@@ -20,9 +20,19 @@
         <br/>
         <p>Nous avons ouvert le @Model.Date</p>
         <p>N'hésitez pas à nous contacter au @Model.Restaurant.Telephone</p>
-        @Html.Label("participer", "Voulez-vous participer ?", new { style = "color: black" } )
+
+
+        @Html.Label("participer", "Voulez-vous participer ?", new { style = "color: black" })
         @Html.CheckBox("participer", true)
-        @Html.Label("textCouleur", "Affichage par classe marron", new { @Class = "maClass" } )
+        @Html.Label("textCouleur", "Affichage par classe marron", new { @Class = "maClass" })
+        <br/><br/>
+        @Html.DropDownList("RestoChoisi", (SelectList)ViewBag.ListeResto)<!-- selectlist -->
+        <!-- HELPER FORM -->
+        @{Html.BeginForm("Index", "Accueil");}
+        @Html.Label("nom", "Votre nom")
+        <input id="nom" maxlength="20" />
+        <input type="submit" value="Envoyer" />
+        @{Html.EndForm();}
     </div>
 </body>
 </html>

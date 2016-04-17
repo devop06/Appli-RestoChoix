@@ -1,0 +1,20 @@
+﻿@model ChoixResto.Models.Utilisateur
+@using ChoixResto.Models;
+@{
+    Layout = null;
+   Restaurant s = (Restaurant) ViewData["resto"];
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div> 
+        <p>Bienvenue chez @s.Nom<br/>Contactez nous au @s.Telephone</p>
+        <p>User @Model.Prenom</p>
+    </div>
+</body>
+</html>

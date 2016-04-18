@@ -33,6 +33,12 @@
         <input id="nom" maxlength="20" />
         <input type="submit" value="Envoyer" />
         @{Html.EndForm();}
+        <!-- link affichage, méthode, controller, paramètre get -->
+        @Html.ActionLink("Accueil", "ActionLink", "Accueil", new { id = Model.Restaurant.Id }, null)
+    
+    
+        <!-- partial vue avec passage du modèle en paramètre -->
+        @Html.Partial("Connexion", Model)
     </div>
 </body>
 </html>

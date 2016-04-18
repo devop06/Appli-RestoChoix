@@ -10,6 +10,7 @@ namespace ChoixResto.Models
     public class Utilisateur
     {
         public int Id { get; set; }
+        [Display(Name="Prénom")]
         [Required]
         public string Prenom { get; set; }
         [Required]

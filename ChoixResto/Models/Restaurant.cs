@@ -12,8 +12,10 @@ namespace ChoixResto.Models
     public class Restaurant
     {
         public int Id { get; set; }
+        [Display(Name = "Restaurant :")]
         [Required]
         public string Nom { get; set; }
+        [Display(Name = "Tel :")]
         public string Telephone { get; set; }
     }
 }

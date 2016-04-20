@@ -134,12 +134,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccueilController.cs" />
     <Compile Include="Controllers\HelperController.cs" />
+    <Compile Include="Controllers\RestaurantController.cs" />
     <Compile Include="Fonctions\Password.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\BddContext.cs" />
     <Compile Include="Models\Dal.cs" />
+    <Compile Include="Models\InitChoixResto.cs" />
     <Compile Include="Models\Interfaces\IDal.cs" />
     <Compile Include="Models\Restaurant.cs" />
     <Compile Include="Models\Resultats.cs" />
@@ -161,6 +163,9 @@
     <Content Include="Views\Helper\Index.cshtml" />
     <Content Include="Views\Shared\Connexion.cshtml" />
     <Content Include="Views\Shared\AfficheListeRestaurant.cshtml" />
+    <Content Include="Views\Restaurant\Index.cshtml" />
+    <Content Include="Views\Restaurant\ModifierRestaurant.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

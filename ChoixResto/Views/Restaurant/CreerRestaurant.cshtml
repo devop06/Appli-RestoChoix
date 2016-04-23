@@ -1,0 +1,38 @@
+﻿
+@model ChoixResto.Models.Restaurant
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Création de restaurant</title>
+</head>
+<body>
+    <div> 
+        @using (Html.BeginForm())
+        {
+            <fieldset>
+                <legend>Ajouter un restaurant</legend>
+
+                <div>
+                    @Html.LabelFor(model => model.Nom)
+                    @Html.TextBoxFor(model => model.Nom)
+                    @Html.ValidationMessageFor(model => model.Nom)
+                </div>
+                <div>
+                    @Html.LabelFor(model => model.Telephone)
+                    @Html.TextBoxFor(model => model.Telephone)
+                    @Html.ValidationMessageFor(model => model.Telephone)
+                </div>
+                <br />
+                <div>
+                    @Html.LabelFor(model => model.Email)
+                    @Html.TextBoxFor(model => model.Email)
+                    @Html.ValidationMessageFor(model => model.Email)
+                </div>
+                <input type="submit" value="Ajouter" />
+            </fieldset>
+        }
+    </div>
+</body>
+</html>

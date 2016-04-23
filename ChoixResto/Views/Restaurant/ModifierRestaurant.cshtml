@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>ModifierRestaurant</title>
+    <title>ModifierRestaurant</title>  
 </head>
 <body>
     <div> 
@@ -18,13 +18,17 @@
                 </legend>
                 @Html.LabelFor(m => m.Nom)
                 @Html.TextBoxFor(m => m.Nom)
-                <br/>
+                @Html.ValidationMessageFor(m => m.Nom)
                 @Html.LabelFor(m => m.Telephone)
                 @Html.TextBoxFor(m => m.Telephone)
+                @Html.ValidationMessageFor(m => m.Telephone)
                 <br/>
                 <input type="submit" value="Modifier"/>
             </fieldset>
         }   
     </div>
+    <script type="text/javascript" src="~/scripts/jquery-1.7.1.js"></script>
+    <script type="text/javascript" src="~/scripts/jquery.validate-vsdoc.js"></script>
+    <script type="text/javascript" src="~/scripts/jquery.validate.unobtrusive.js"></script>
 </body>
 </html>

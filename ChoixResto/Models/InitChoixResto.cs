@@ -17,9 +17,9 @@ namespace ChoixResto.Models
     {
         protected override void Seed(BddContext context)
         {
-            context.Restaurants.Add(new Restaurant { Id = 1, Nom = "Resto pinambour", Telephone = "123" });
-            context.Restaurants.Add(new Restaurant { Id = 2, Nom = "Resto pinière", Telephone = "456" });
-            context.Restaurants.Add(new Restaurant { Id = 3, Nom = "Resto toro", Telephone = "789" });
+            context.Restaurants.Add(new Restaurant { Id = 1, Nom = "Resto pinambour", Telephone = "0164209743" });
+            context.Restaurants.Add(new Restaurant { Id = 2, Nom = "Resto pinière", Telephone = "0162589743" });
+            context.Restaurants.Add(new Restaurant { Id = 3, Nom = "Resto toro", Telephone = "0262589743" });
             base.Seed(context);
         }
     }

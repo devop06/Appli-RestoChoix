@@ -18,7 +18,7 @@ namespace ChoixResto
 
             IDatabaseInitializer<BddContext> init = new InitChoixResto();
             Database.SetInitializer(init);
-            init.InitializeDatabase(new BddContext());
+           
         }
     }
 }

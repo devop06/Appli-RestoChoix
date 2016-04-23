@@ -63,11 +63,39 @@ namespace ChoixResto.Controllers
         [HttpPost]
         public ActionResult ModifierRestaurant(Restaurant resto)
         {
+            if (!ModelState.IsValid)
+                    return View(resto);
            using (IDal dal = new Dal())
                 {
                     dal.ModifierLesRestos(resto.Id, resto.Nom, resto.Telephone);
                     return RedirectToAction("Index");
                 }
-            } 
         }
+
+        public ActionResult CreerRestaurant()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreerRestaurant(Restaurant resto)
+        {
+            using (IDal dal = new Dal())
+            {
+                if(dal.RestaurantExiste(resto.Nom))
+                {
+                    ModelState.AddModelError("Nom", "Restaurant déjà existant !");
+                    return View(resto);
+                }
+                if (!ModelState.IsValid)
+                {
+                    return View(resto);
+                }
+                dal.CreerResto(resto.Nom, resto.Telephone);
+            }
+            return RedirectToAction("Index");
+        }
+    }
 }
+
+        

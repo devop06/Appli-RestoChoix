@@ -22,13 +22,14 @@ namespace ChoixResto.Models
             return this.bdd.Restaurants.ToList();
         }
 
-        public void ModifierLesRestos(int id, string nom, string tel)
+        public void ModifierLesRestos(int id, string nom, string tel, string email)
         {
             Restaurant r = this.bdd.Restaurants.FirstOrDefault(resto => resto.Id == id);
             if(r != null)
             {
                 r.Nom = nom;
                 r.Telephone = tel;
+                r.Email = email;
                 this.bdd.SaveChanges();
             }
         }

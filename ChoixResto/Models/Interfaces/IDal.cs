@@ -10,7 +10,7 @@ namespace ChoixResto.Models
     {
         List<Restaurant> ObtenirListeResto();
         void CreerResto(String nom, String tel);
-        void ModifierLesRestos(int id, string nom, string tel);
+        void ModifierLesRestos(int id, string nom, string tel, string email);
         bool RestaurantExiste(string v);
         Utilisateur ObtenirUtilisateur(int v);
         Utilisateur ObtenirUtilisateur(String name);

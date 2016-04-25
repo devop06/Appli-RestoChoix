@@ -1,10 +1,4 @@
-﻿@model ChoixResto.Models.Utilisateur 
-@using ChoixResto.Models;
-@{
-    Layout = null;
-   Restaurant s = (Restaurant) ViewData["resto"];
-}
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html>
 <head>
@@ -14,9 +8,16 @@
 <body>
     <div> 
         
-        <p>Bienvenue chez @s.Nom<br/>Contactez nous au @s.Telephone</p>
-        <p>User @Model.Prenom</p>
-    
+       <h1>Bienvenue au restaurant</h1>
+        <p>Prêt à choisir un restaurant ?</p>
+        
+        @Html.ActionLink("Créer un restaurant","CreerRestaurant", "Restaurant")
+        <br/>
+        @Html.ActionLink("Modifier les restaurants", "Index", "Restaurant")
+        @using (Html.BeginForm())
+        {
+            <button  type="submit" >Créer un sondage</button>
+        }
     </div>
 </body>
 </html>

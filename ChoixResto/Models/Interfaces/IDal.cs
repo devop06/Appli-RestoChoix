@@ -12,6 +12,7 @@ namespace ChoixResto.Models
         void CreerResto(String nom, String tel);
         void ModifierLesRestos(int id, string nom, string tel, string email);
         bool RestaurantExiste(string v);
+        Utilisateur CreeOuRecupere(string nom, string motDePasse);
         Utilisateur ObtenirUtilisateur(int v);
         Utilisateur ObtenirUtilisateur(String name);
         int AjouterUtilisateur(string v1, string v2);

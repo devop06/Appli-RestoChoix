@@ -72,10 +72,17 @@ namespace ChoixResto.Models
 
         public Utilisateur ObtenirUtilisateur(string idStr)
         {
-            int id;
-            if (int.TryParse(idStr, out id))
-                return ObtenirUtilisateur(id);
-            return null;
+            switch (idStr)
+            {
+                case "Chrome":
+                    return CreeOuRecupere("Nico", "1234");
+                case "IE":
+                    return CreeOuRecupere("Jérémie", "1234");
+                case "Firefox":
+                    return CreeOuRecupere("Delphine", "1234");
+                default:
+                    return CreeOuRecupere("Timéo", "1234");
+            }
         }
 
         public int CreerUnSondage()
@@ -125,6 +132,17 @@ namespace ChoixResto.Models
             listeDesRestaurants = new List<Restaurant>();
             listeDesUtilisateurs = new List<Utilisateur>();
             listeDessondages = new List<Sondage>();
+        }
+
+        public Utilisateur CreeOuRecupere(string nom, string motDePasse)
+        {
+            Utilisateur utilisateur = Authentifier(nom, motDePasse);
+            if (utilisateur == null)
+            {
+                int id = AjouterUtilisateur(nom, motDePasse);
+                return ObtenirUtilisateur(id);
+            }
+            return utilisateur;
         }
     }
 }

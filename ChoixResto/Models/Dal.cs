@@ -51,10 +51,39 @@ namespace ChoixResto.Models
              return this.bdd.Utilisateurs.FirstOrDefault(util => util.Id == v);
         }
 
-        public Utilisateur ObtenirUtilisateur(string name)
+        public Utilisateur ObtenirUtilisateur(string idStr)
         {
-            return this.bdd.Utilisateurs.FirstOrDefault(util => util.Prenom == name);
+            switch (idStr)
+            {
+                case "Chrome":
+                    return CreeOuRecupere("Nico", "1234");
+                case "IE":
+                    return CreeOuRecupere("Jérémie", "1234");
+                case "Firefox":
+                    return CreeOuRecupere("Delphine", "1234");
+                default:
+                    return CreeOuRecupere("Timéo", "1234");
+            }
         }
+
+        public Utilisateur CreeOuRecupere(string nom, string motDePasse)
+        {
+            Utilisateur utilisateur = Authentifier(nom, motDePasse);
+            if (utilisateur == null)
+            {
+                int id = AjouterUtilisateur(nom, motDePasse);
+                return ObtenirUtilisateur(id);
+            }
+            return utilisateur;
+        }
+
+        public Utilisateur Authentifier(string v1, string v2)
+        {
+            v2 = Fonctions.Password.EncodeMD5(v2);
+            Utilisateur foundUser = this.bdd.Utilisateurs.FirstOrDefault(user => user.Prenom == v1 && user.MotDePasse == v2);
+            return foundUser;
+        }
+
 
         public void Dispose()
         {
@@ -69,22 +98,16 @@ namespace ChoixResto.Models
             return user.Id;
         }
 
-        public Utilisateur Authentifier(string v1, string v2)
-        {
-            v2 = Fonctions.Password.EncodeMD5(v2);
-            Utilisateur foundUser = this.bdd.Utilisateurs.FirstOrDefault(user => user.Prenom == v1 && user.MotDePasse == v2);
-            return foundUser;
-        }
-
+    
         public bool ADejaVote(int idSondage, string idStr)
         {
-            int id;
-            if (int.TryParse(idStr, out id))
+            Utilisateur utilisateur = ObtenirUtilisateur(idStr);
+            if (utilisateur != null)
             {
                 Sondage sondage = bdd.Sondages.First(s => s.Id == idSondage);
                 if (sondage.Votes == null)
                     return false;
-                return sondage.Votes.Any(v => v.Utilisateur != null && v.Utilisateur.Id == id);
+                return sondage.Votes.Any(v => v.Utilisateur != null && v.Utilisateur.Id == utilisateur.Id);
             }
             return false;
         }
@@ -126,5 +149,6 @@ namespace ChoixResto.Models
             }
             return resultats;
         }
+
     }
 }

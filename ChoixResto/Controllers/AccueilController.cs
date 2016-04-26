@@ -26,7 +26,7 @@ namespace ChoixResto.Controllers
         public ActionResult IndexPost()
         {
             int idSondage = this.dal.CreerUnSondage();
-            return RedirectToAction("Index", "Vote", new { id = idSondage });
+            return RedirectToAction("Index", "Vote", new { Id = idSondage });
         }
 
        

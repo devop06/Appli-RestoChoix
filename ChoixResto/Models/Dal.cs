@@ -46,6 +46,8 @@ namespace ChoixResto.Models
             return existe;
         }
 
+
+
         public Utilisateur ObtenirUtilisateur(int v)
         {
              return this.bdd.Utilisateurs.FirstOrDefault(util => util.Id == v);
@@ -53,17 +55,10 @@ namespace ChoixResto.Models
 
         public Utilisateur ObtenirUtilisateur(string idStr)
         {
-            switch (idStr)
-            {
-                case "Chrome":
-                    return CreeOuRecupere("Nico", "1234");
-                case "IE":
-                    return CreeOuRecupere("Jérémie", "1234");
-                case "Firefox":
-                    return CreeOuRecupere("Delphine", "1234");
-                default:
-                    return CreeOuRecupere("Timéo", "1234");
-            }
+            int id;
+            if (int.TryParse(idStr, out id))
+               return this.ObtenirUtilisateur(id);
+            return null;
         }
 
         public Utilisateur CreeOuRecupere(string nom, string motDePasse)
@@ -104,7 +99,7 @@ namespace ChoixResto.Models
             Utilisateur utilisateur = ObtenirUtilisateur(idStr);
             if (utilisateur != null)
             {
-                Sondage sondage = bdd.Sondages.First(s => s.Id == idSondage);
+                Sondage sondage = bdd.Sondages.FirstOrDefault(s => s.Id == idSondage);
                 if (sondage.Votes == null)
                     return false;
                 return sondage.Votes.Any(v => v.Utilisateur != null && v.Utilisateur.Id == utilisateur.Id);
@@ -150,5 +145,9 @@ namespace ChoixResto.Models
             return resultats;
         }
 
+        public bool SondageExiste(int idSondage)
+        {
+            return this.bdd.Sondages.ToList().Exists(s => s.Id == idSondage); 
+        }
     }
 }

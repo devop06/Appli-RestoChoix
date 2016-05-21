@@ -18,6 +18,15 @@ namespace ChoixRestoTests
         }
 
         [TestMethod]
+        public void AccueilController_IndexPost_RenvoiActionVote()
+        {
+            ChoixResto.Controllers.AccueilController accueilCtrl = new ChoixResto.Controllers.AccueilController();
+            RedirectToRouteResult action = (RedirectToRouteResult)accueilCtrl.IndexPost();
+            Assert.AreEqual("Index", action.RouteValues["action"]);
+            Assert.AreEqual("Vote", action.RouteValues["controller"]);
+        }
+
+        [TestMethod]
         public void RestaurantController_ModifierRestaurantAvecRestoInvalide_RenvoiVueParDefaut()
         {
             using (IDal dal = new DalEnDur())

@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace ChoixResto.ViewModels
 {
-    public class RestaurantVoteViewModel
+    public class RestaurantVoteViewModel : IValidatableObject
     {
         public List<RestaurantCheckBoxViewModel> ListeDesResto { get; set; }
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            return null;
-            // à faire !
+            if (!ListeDesResto.Any(r => r.EstSelectionne))
+                   yield return new ValidationResult("Vous devez choisir au moins un restaurant", new[] { "ListeDesResto" }); 
         }
     }
 }

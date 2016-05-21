@@ -14,7 +14,7 @@ namespace ChoixResto.Models
 
         public DalEnDur()
         {
-                listeDesRestaurants = new List<Restaurant>
+            listeDesRestaurants = new List<Restaurant>()
             {
                 new Restaurant { Id = 1, Nom = "Resto pinambour", Telephone = "0102030405", Email =  null},
                 new Restaurant { Id = 2, Nom = "Resto pinière", Telephone = "0102030405", Email = "tutu@gmail.com"},
@@ -143,6 +143,11 @@ namespace ChoixResto.Models
                 return ObtenirUtilisateur(id);
             }
             return utilisateur;
+        }
+
+        public bool SondageExiste(int idSondage)
+        {
+            return this.listeDessondages.ToList().Exists(s => s.Id == idSondage);
         }
     }
 }

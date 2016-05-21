@@ -1,0 +1,30 @@
+﻿@model ChoixResto.ViewModels.UtilisateurViewModel
+@{
+    ViewBag.Title = "Connexion";
+    Layout = "~/Views/Shared/_Global.cshtml";
+}
+
+@if(Model.Authentifie)
+{
+    <p>Vous êtes authentifié avec le pseudo @Model.Utilsateur.Prenom
+    <br/>
+       @Html.ActionLink("Déconnexion", "Logout", "Login")
+    </p>
+}
+else
+{
+    using (Html.BeginForm())
+    {
+        @Html.LabelFor(u => u.Utilsateur.Prenom, "Pseudo :")
+        @Html.TextBoxFor(u => u.Utilsateur.Prenom)
+        @Html.ValidationMessageFor(u => u.Utilsateur.Prenom)<br />
+
+        @Html.LabelFor(u => u.Utilsateur.MotDePasse, "Mot de passe :")
+        @Html.PasswordFor(u => u.Utilsateur.MotDePasse)
+        <br />
+        <input type="submit" value="Se connecter" />
+    }
+}
+
+
+

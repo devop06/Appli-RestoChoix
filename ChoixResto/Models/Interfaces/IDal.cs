@@ -18,6 +18,7 @@ namespace ChoixResto.Models
         int AjouterUtilisateur(string v1, string v2);
         Utilisateur Authentifier(string v1, string v2);
         bool ADejaVote(int v1, string v2);
+        bool SondageExiste(int idSondage);
         int CreerUnSondage();
         void AjouterVote(int idSondage, int idResto, int idUtilisateur);
         List<Resultats> ObtenirLesResultats(int idSondage);

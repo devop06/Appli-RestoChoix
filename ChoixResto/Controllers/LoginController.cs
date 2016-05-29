@@ -1,9 +1,6 @@
 ﻿using ChoixResto.Models;
 using ChoixResto.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Web.Security;
 using System.Web.Mvc;
 
 namespace ChoixResto.Controllers
@@ -27,10 +24,42 @@ namespace ChoixResto.Controllers
             return View(viewModel);
         }
         [HttpPost]
-        public ActionResult Index(UtilisateurViewModel viewModel)
+        public ActionResult Index(UtilisateurViewModel viewModel, string ReturnUrl)
         {
-            // à continuer
-            return null;
+            if (ModelState.IsValid)
+            {
+                Utilisateur user = this.dal.Authentifier(viewModel.Utilsateur.Prenom, viewModel.Utilsateur.MotDePasse);
+                if(user != null)
+                {
+                    System.Web.Security.FormsAuthentication.SetAuthCookie(user.Id.ToString(), false);
+                    return Redirect(ReturnUrl);
+                }
+                ModelState.AddModelError("Utilsateur.Prenom", "Utilisateur non reconnu");
+            }
+                return View(viewModel);
+           
+        }
+
+        public ActionResult CreerCompte()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult CreerCompte(ViewModels.CreerCompteUtisateurViewModel user)
+        {
+            if(ModelState.IsValid)
+            {
+                int id = this.dal.AjouterUtilisateur(user.Prenom, user.MotDePasse);
+                FormsAuthentication.SetAuthCookie(id.ToString(), false);
+                return Redirect("/");
+            }
+            return View(user);
+        }
+        [HttpGet]
+        public ActionResult Signout()
+        {
+            FormsAuthentication.SignOut();
+            return Redirect("/");
         }
     }
 }

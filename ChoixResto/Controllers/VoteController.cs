@@ -36,9 +36,9 @@ namespace ChoixResto.Controllers
         {
             if (id.HasValue)
             {
-                if (this.dal.ADejaVote((int)id, Request.Browser.Browser))
+                if (this.dal.ADejaVote((int)id, HttpContext.User.Identity.Name))
                     return RedirectToAction("AfficheResultat", new { Id = (int)id });
-                Utilisateur user = this.dal.ObtenirUtilisateur(Request.Browser.Browser);
+                Utilisateur user = this.dal.ObtenirUtilisateur(HttpContext.User.Identity.Name);
                 if (user == null)
                     return new HttpUnauthorizedResult();
                 if (!ModelState.IsValid)
@@ -60,7 +60,7 @@ namespace ChoixResto.Controllers
                 int idI = (int)id;
                 if (!this.dal.SondageExiste(idI))
                     return HttpNotFound();
-                if (!this.dal.ADejaVote(idI, Request.Browser.Browser))
+                if (!this.dal.ADejaVote(idI, HttpContext.User.Identity.Name))
                     return View("index", new { Id = idI });
                 List<Resultats> lesResultats = this.dal.ObtenirLesResultats(idI).OrderBy(res => res.NombresDeVotes).ToList();
                 return View("AfficheResultat", lesResultats);

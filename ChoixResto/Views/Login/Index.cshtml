@@ -23,6 +23,7 @@ else
         @Html.PasswordFor(u => u.Utilsateur.MotDePasse)
         <br />
         <input type="submit" value="Se connecter" />
+        @Html.ActionLink("Créer un compte", "CreerCompte", "Login")
     }
 }
 

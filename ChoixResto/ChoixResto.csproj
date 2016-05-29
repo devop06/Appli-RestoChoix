@@ -143,6 +143,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DeuxIdentiques.cs" />
     <Compile Include="Models\AuMoinsUnDesDeux.cs" />
     <Compile Include="Models\BddContext.cs" />
     <Compile Include="Models\Dal.cs" />
@@ -155,6 +156,7 @@
     <Compile Include="Models\Utilisateur.cs" />
     <Compile Include="Models\Vote.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\CreerCompteUtisateurViewModel.cs" />
     <Compile Include="ViewModels\PresentationViewModel.cs" />
     <Compile Include="ViewModels\RestaurantCheckBoxViewModel.cs" />
     <Compile Include="ViewModels\RestaurantVoteViewModel .cs" />
@@ -180,6 +182,7 @@
     <Content Include="Views\Vote\AfficheResultat.cshtml" />
     <Content Include="Views\Shared\_Global.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Login\CreerCompte.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

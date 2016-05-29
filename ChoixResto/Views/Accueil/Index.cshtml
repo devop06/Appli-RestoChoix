@@ -18,6 +18,11 @@
         {
             <button  type="submit" >Créer un sondage</button>
         }
+        @if (HttpContext.Current.User.Identity.IsAuthenticated)
+        {
+            @Html.ActionLink("Déconnexion", actionName: "Signout", controllerName: "Login")
+        }
+             
     </div>
 </body>
 </html>

@@ -1,0 +1,52 @@
+﻿@model ChoixResto.ViewModels.CreerCompteUtisateurViewModel
+@{
+    ViewBag.Title = "Création de compte";
+    Layout = "~/Views/Shared/_Global.cshtml";
+}
+@section Js
+{
+    <script type="text/javascript" src="~/scripts/jquery-1.7.1.js"></script>
+    <script type="text/javascript" src="~/scripts/jquery.validate-vsdoc.js"></script>
+    <script type="text/javascript" src="~/scripts/jquery.validate.unobtrusive.js"></script>
+}
+
+<h2>Créer compte</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Ajout d'utilisateur</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Prenom, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Prenom, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Prenom, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MotDePasse,  htmlAttributes: new { @class = "control-label col-md-2" }, labelText: "Mot de passe :")
+            <div class="col-md-10">
+                @Html.PasswordFor(model => model.MotDePasse, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MotDePasse, "", new { @class = "text-danger" })
+            </div>
+
+            @Html.LabelFor(model => model.MotDePasseVerif, htmlAttributes: new { @class = "control-label col-md-2" }, labelText: "Vérification :")
+            <div class="col-md-10">
+                @Html.PasswordFor(model => model.MotDePasseVerif, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MotDePasseVerif, "", new { @class = "text-danger" })
+            </div>
+            
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Créer l'utilisateur" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
